@@ -25,7 +25,11 @@ document.getElementsByTagName("nav")[0].addEventListener("click", e => {
 // 1 mouseenter
 document.querySelectorAll(".shadow").forEach(element =>
   element.addEventListener("mouseenter", e => {
-    e.target.style.boxShadow = "7px 8px 5px 1px rgba(160, 160, 160, 0.2)";
+    const duration = 0.5;
+    const animations = {
+      boxShadow: "7px 8px 5px 1px rgba(100, 100, 100, 0.2)"
+    };
+    TweenMax.to(e.target, duration, animations); // STRETCH: Green Sock
     //e.target.style.border = "1px solid black";
   })
 );
@@ -84,6 +88,12 @@ Array.from(allElements).forEach(element =>
 );
 //10 beforeprint
 window.addEventListener("beforeprint", () => alert("Print!"));
+
+// STRETCH: Green Sock
+const screenWidth = window.innerWidth;
+TweenMax.from("h1", 1.1, { y: -100 });
+TweenMax.staggerFrom("nav a", 0.5, { x: screenWidth / 2 }, 0.2);
+
 // This code is just to have some fun!  It adds a random listener to every element on the page and logs when its triggered!
 
 // const events = {
