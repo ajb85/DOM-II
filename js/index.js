@@ -22,7 +22,68 @@ document.getElementsByTagName("nav")[0].addEventListener("click", e => {
 // end MVP
 
 // MVP GOAL: 10 unique event listeners
-
+// 1 mouseenter
+document.querySelectorAll(".shadow").forEach(element =>
+  element.addEventListener("mouseenter", e => {
+    e.target.style.boxShadow = "7px 8px 5px 1px rgba(160, 160, 160, 0.2)";
+    //e.target.style.border = "1px solid black";
+  })
+);
+// 2 mouseleave
+document.querySelectorAll(".shadow").forEach(element =>
+  element.addEventListener("mouseleave", e => {
+    e.target.style.boxShadow = "none";
+    //e.target.style.border = "none";
+  })
+);
+//3 click
+document.getElementsByTagName("h1")[0].addEventListener("click", e => {
+  e.target.classList.toggle("underline");
+});
+//4 dblclick
+Array.from(document.getElementsByTagName("img")).forEach(img =>
+  img.addEventListener("dblclick", e => {
+    e.target.style.display = "none";
+  })
+);
+//5 copy --> only works on highlight & Ctrl+C
+Array.from(document.getElementsByTagName("img")).forEach(img =>
+  img.addEventListener("copy", e => {
+    alert("Please don't steal our images");
+  })
+);
+//6 resize
+window.addEventListener("resize", e => {
+  if (window.innerWidth < 500) console.log("Switch to mobile view");
+});
+//7 contextmenu
+window.addEventListener("contextmenu", e => {
+  alert(
+    "I'm one of those annoying sites that tries to stop you from right-clicking"
+  );
+  e.preventDefault();
+});
+//8 keydown
+let keystrokes = "";
+window.addEventListener("keydown", e => {
+  keystrokes += e.key;
+  console.log(`hackin ur life: ${keystrokes}`);
+});
+//9 mousemove
+const allElements = document.body.getElementsByTagName("*");
+const logElementInterest = {};
+Array.from(allElements).forEach(element =>
+  element.addEventListener("mousemove", e => {
+    const key = `${element.tagName}_${element.className}`;
+    logElementInterest[key] = logElementInterest[key]
+      ? (logElementInterest[key] += 1)
+      : 1;
+    console.log(logElementInterest);
+    e.stopPropagation(); // no bubble!
+  })
+);
+//10 beforeprint
+window.addEventListener("beforeprint", () => alert("Print!"));
 // This code is just to have some fun!  It adds a random listener to every element on the page and logs when its triggered!
 
 // const events = {
